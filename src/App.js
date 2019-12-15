@@ -14,7 +14,8 @@ class App extends Component {
       high: '',
       low: '', 
       icon: '',
-      isRaining: ''
+      isRaining: '',
+      showModal: true
     }
   }
 
@@ -57,11 +58,18 @@ class App extends Component {
     });
   }
 
+  removeModal = () => {
+    this.setState({
+      showModal: false
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <div className="row">
           <div className="col s6 offset-s3">
+            <button onClick={this.removeModal} className="btn">Remove from Dom</button>
             <Headers temp={this.state.temp} isRaining={this.state.isRaining} />
             {/* Modal Trigger from materialize */}
             <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Details</a>
@@ -71,13 +79,13 @@ class App extends Component {
           </div>
         </div>  
         {/* Modal Structure from materialize*/}
-        <Modal 
+        {this.state.showModal ? <Modal 
           cityName={this.state.cityName}
           high={this.state.high}
           low={this.state.low}
           weather={this.state.weather}
           icon={this.state.icon}
-        />
+        /> : ''}
       </div>
     );
   }

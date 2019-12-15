@@ -1,6 +1,10 @@
 import React from 'react';
 
 class Modal extends React.Component {
+    componentWillUnmount() {
+        console.log('component will be history~~~~')
+    }
+
     render() {
         const iconUrl = `http://openweathermap.org/img/w/${this.props.icon}.png`
         
