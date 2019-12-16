@@ -1,11 +1,20 @@
 import React from 'react';
-
+import './temperatureInput.css';
 class TemperatureInput extends React.Component {
     render() {
         const temperature = this.props.temperature;
+        let style;
+        let hotClass;
+        if (temperature > 100) {
+            style = {
+                color: 'red',
+                backgroundColor: 'yellow'
+            }
+            hotClass = 'too-hot';
+        }
         return (
-            <div>
-                <legend>Enter temperature in {this.props.scale}:</legend>
+            <div className="temp-input">
+                <legend className={hotClass} >Enter temperature in {this.props.scale}:</legend>
                 <input
                     value={temperature}
                     onChange={(e) => this.props.handleChange(e, this.props.scale)} />
@@ -14,4 +23,4 @@ class TemperatureInput extends React.Component {
     }
 }
 
-export default TemperatureInput;
+export default TemperatureInput; 
